@@ -1,14 +1,15 @@
 {
-  "name": "arena-backend-take-home-exercise",
+  "name": "matterapp-backend-take-home-exercise",
   "version": "1.0.0",
-  "repository": "https://github.com/stationfy/backend-take-home-exercise",
-  "author": "Rodrigo Reis",
+  "repository": "https://github.com/matter-app/backend-take-home-exercise",
+  "author": "Kerem Kazan",
   "private": true,
   "scripts": {
     "watch": "npx nodemon --exec babel-node ./src/server.js",
     "migrate": "npx sequelize-cli db:migrate --config ./src/db/config/config.json --migrations-path ./src/db/migrations",
     "seed": "npx sequelize-cli db:seed:all --config ./src/db/config/config.json --seeders-path ./src/db/seeders",
-    "setup": "npm run migrate && npm run seed"
+    "setup": "npm run migrate && npm run seed",
+    "dev":"nodemon ./src/server.js"
   },
   "dependencies": {
     "apollo-server-express": "2.8.1",

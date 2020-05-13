@@ -1,0 +1,118 @@
+// todos os tickets raizes
+
+query {
+  tickets {
+    id
+    title
+    isCompleted
+  }
+}
+
+
+//todos os tickets que possuem tickets filhos
+query {
+  tickets {
+    id
+    title
+    isCompleted
+    children{
+      id
+      title
+      isCompleted
+		}
+  }
+}
+
+//ticket espeficificado pelo id 
+
+query {
+  ticket(id:3){
+    id
+    title
+    isCompleted
+  }
+}
+
+//ticket espeficífico com tickets filhos
+query {
+  ticket(id:3){
+    id
+    title
+    isCompleted
+    children{
+      id
+    	title
+    	isCompleted
+		}
+  }
+}
+
+*
+* Mutations
+*
+
+// criação do ticket
+
+mutation createTicket{
+  createTicket(title:"Teste Glamuroso",isCompleted:true){
+    id
+    title 
+    isCompleted
+	}
+}
+
+//update ticket (mudar o title)
+
+mutation update{
+	updateTicket(id:4,title:"teste mais glamuroso ainda"){
+    id
+    title
+    isCompleted
+  }
+}
+
+//muda o campo "isCOmpleted" (toggle)
+
+mutation toggle{
+	updateTicket(id:3,isCompleted:true){
+    isCompleted
+    title
+    id
+  }
+}
+
+// remove ticket com base no ID
+
+mutation delete{
+  removeTicket(id:3)
+}
+
+// adiciona um tickets filho a um ticket pai
+
+mutation addcria{
+	addChildrenToTicket(parentId:4,childrenIds:[20,22,23,24]){
+    id
+    title
+    isCompleted
+  }
+}
+
+//Muda o ticket filho para outro ticket pai (setar)
+
+mutation setParentOfTicket{
+  setParentOfTicket(parentId:2,childId:20){
+    id
+    title
+    isCompleted
+	}
+}
+
+//muda o ticket para parentId null, transformando em ticket root
+
+mutation rootTicket{
+  removeParentFromTicket(id:22){
+    id
+    title
+    isCompleted
+  }
+}
